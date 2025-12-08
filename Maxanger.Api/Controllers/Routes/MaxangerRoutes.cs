@@ -7,6 +7,7 @@ public static class MaxangerRoutes
     public static class Test
     {
         public const string Base = Api + "/test";
+        public const string HelloWorld = Api + "/helloworld";
         public const string GetRandomNumber = Base + "/randomnum";
         public const string GetAgeByYear = Base + "/age/{year}";
         public const string GetTestTrucks = Base + "/trucks";
