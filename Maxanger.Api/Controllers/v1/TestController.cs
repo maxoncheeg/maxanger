@@ -15,4 +15,10 @@ public class TestController : AbstractController
     {
         return BaseResponse(StatusCodes.Status200OK, _random.Next(1, 6));
     }
+    
+    [HttpGet(MaxangerRoutes.Test.HelloWorld)]
+    public async Task<IActionResult> GetHelloWorld()
+    {
+        return BaseResponse(StatusCodes.Status200OK, "ПРИВЕТ МИР!");
+    }
 }
