@@ -75,8 +75,8 @@ app.UseCors(options =>
 app.MapControllers();
 app.MapGet("/", async context => context.Response.Redirect("/swagger"));
 app.MapHub<ChatHub>(MaxangerRoutes.Chat.Hub);
-if (app.Environment.IsDevelopment())
-{
+// if (app.Environment.IsDevelopment())
+// {
     app.UseSwagger();
     app.UseSwaggerUI(options =>
     {
@@ -84,6 +84,6 @@ if (app.Environment.IsDevelopment())
         options.SwaggerEndpoint("/swagger/v2/swagger.json", "CodeVersioning v2");
         //options.SwaggerEndpoint("/swagger/v3/swagger.json", "CodeVersioning v3");
     });
-}
+// }
 
 app.Run();
