@@ -1,0 +1,14 @@
+﻿version: "3.9"
+
+services:
+  api:
+    container_name: maxanger_api
+    build:
+      context: .
+      dockerfile: Maxanger.Api/Dockerfile
+    ports:
+      - "5000:8080"    # 5000 — порт VPS, 8080 — порт внутри контейнера
+    environment:
+      ASPNETCORE_URLS: "http://0.0.0.0:8080"
+      ASPNETCORE_ENVIRONMENT: "Production"
+    restart: always
