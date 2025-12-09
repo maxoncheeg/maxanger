@@ -21,4 +21,10 @@ public class TestController : AbstractController
     {
         return BaseResponse(StatusCodes.Status200OK, "ПРИВЕТ МИР!");
     }
+    
+    [HttpGet(MaxangerRoutes.Test.GetCurrentDate)]
+    public async Task<IActionResult> GetCurrentDate()
+    {
+        return BaseResponse(StatusCodes.Status200OK, DateTime.UtcNow);
+    }
 }
