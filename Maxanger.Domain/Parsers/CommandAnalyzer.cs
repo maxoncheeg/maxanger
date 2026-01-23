@@ -17,17 +17,15 @@ public class CommandAnalyzer : ICommandAnalyzer
 
     public CommandAction Analyze(string command)
     {
-        var commandTokens = command.Trim().Split();
+        var trimmedCommand = command.Trim();
+        var commandTokens = trimmedCommand.Split();
 
         if (commandTokens.Length < 2) return CommandAction.Error;
 
-        var commandStart = commandTokens[..2];
-        var commandBase = _commands.GetValueOrDefault(commandStart[0]);
+        var commandBase = _commands.GetValueOrDefault(commandTokens[0]);
 
         if (commandBase == null) return CommandAction.Error;
 
-        return commandBase.SubcommandMatcher(commandStart[1])
-            ? commandBase.Action
-            : CommandAction.Error;
+        return commandBase.MatchCommand(trimmedCommand);
     }
 }

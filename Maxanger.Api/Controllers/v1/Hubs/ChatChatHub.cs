@@ -1,5 +1,6 @@
 ﻿using Asp.Versioning;
 using Maxanger.Application.CommandExecutors;
+using Maxanger.Application.Hubs.Abstract;
 using Maxanger.Domain.Interpreters;
 using Maxanger.Domain.Interpreters.Abstract;
 using Maxanger.Domain.Messengers;
@@ -15,9 +16,9 @@ using Microsoft.AspNetCore.SignalR;
 namespace Maxanger.Api.Controllers.v1.Hubs;
 
 [ApiVersion(1)]
-public class ChatHub : Hub
+public class ChatChatHub : Hub, IChatHub
 {
-    public ChatHub()
+    public ChatChatHub()
     {
         
     }
@@ -27,5 +28,22 @@ public class ChatHub : Hub
     {
         Console.WriteLine($"{username} : {message}");
         await Clients.All.SendAsync("messageReceived", username, message);
+    }
+    
+    [HubMethodName("executeCommand")]
+    public async Task ExecuteCommandAsync(string @operator, string command)
+    {
+        Console.WriteLine($"{@operator} : {command}");
+        // await Clients.All.SendAsync("messageReceived", username, message);
+    }
+
+    public async Task NotifyCallerAsync(string method, object? message)
+    {
+        await Clients.Caller.SendAsync(method, message);
+    }
+
+    public async Task NotifyAllClientsAsync(string method, object? message)
+    {
+        await Clients.All.SendAsync(method, message);
     }
 }

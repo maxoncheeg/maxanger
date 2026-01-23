@@ -10,6 +10,8 @@ using Maxanger.Domain.Models.Users.Abstract;
 using Maxanger.Domain.Parsers;
 using Maxanger.Domain.Parsers.Abstract;
 using Maxanger.Domain.Parsers.CommandBases;
+using Maxanger.Domain.Parsers.CommandMatchers.ChatMatcher;
+using Maxanger.Domain.Parsers.CommandMatchers.MessageMatcher;
 using Maxanger.Domain.Parsers.CommandParseHandlers;
 using Maxanger.Domain.Shells;
 using Maxanger.Domain.Shells.Abstract;
@@ -19,9 +21,13 @@ long chatId = 0;
 IMessenger messenger = new Messenger();
 messenger.NewChat += (id) => chatId = id;
 
+IEnumerable<IMessageCommandMatcher> messageCommandMatchers = [new MessageCommandMatcher()];
+IEnumerable<IChatCommandMatcher> chatCommandMatchers = [new ChatCreateCommandMatcher()];
+
+
 ICommandAnalyzer commandAnalyzer = new CommandAnalyzer([
-    new CreateChatCommandBase(),
-    new SendMessageCommandBase()
+    new CreateCommandBase(chatCommandMatchers),
+    new MessageCommandBase(messageCommandMatchers)
 ]);
 
 ICommandParseHandlerFactory commandParseHandlerFactory = new CommandParseHandlerFactory([
@@ -42,9 +48,9 @@ ICommandShell shell = new CommandShell(parser, interpreter);
 IOperator operator1 = new Operator() { Id = 1, Username = "jordan" };
 IOperator operator2 = new Operator() { Id = 2, Username = "aboba" };
 
-shell.Invoke(operator1, "/chat create MEGACHAT");
-shell.Invoke(operator1, $"/m {chatId} hello");
-shell.Invoke(operator2, $"/m {chatId} hi");
+var result = shell.Invoke(operator1, "/chat create");
+var result1 =shell.Invoke(operator1, $"/m hello");
+var result2 =shell.Invoke(operator2, $"/m hi");
 
 foreach (var chat in messenger.Chats)
 {

@@ -13,17 +13,16 @@ public class SendMessageCommandParseHandler : ICommandParseHandler
 
     public IParseResult Parse(string command)
     {
-        var match = Regex.Match(command, @"^\/m\s+(\d+)\s+(.+)$", RegexOptions.IgnoreCase);
+        var match = Regex.Match(command, @"^\/m\s+(.+)$", RegexOptions.IgnoreCase);
 
         if (match.Success)
         {
-            var id = match.Groups[1].Value;
-            var text = match.Groups[2].Value;
+            var text = match.Groups[1].Value;
 
-            return new ParseResult(new ParsedCommand(Action, [id, text]));
+            return new ParseResult(new ParsedCommand(Action, [text]));
         }
 
         return new ParseResult(new ParsedCommand(Action))
-            { Error = "Неверное написание команды (/m [CHAT_ID] [TEXT])." };
+            { Error = "Неверное написание команды (/m [TEXT])." };
     }
 }

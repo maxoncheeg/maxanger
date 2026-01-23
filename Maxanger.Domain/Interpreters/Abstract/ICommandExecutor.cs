@@ -8,5 +8,5 @@ public interface ICommandExecutor
 {
     public CommandAction Action { get; }
     
-    public IExecutionResult Execute(IOperator @operator, IList<string>? arguments = null, IList<string>? modifiers = null);
+    public Task<IExecutionResult> ExecuteAsync(IOperator @operator, IList<string>? arguments = null, IEnvironments? environments = null, IList<string>? modifiers = null);
 }

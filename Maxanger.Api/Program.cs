@@ -74,7 +74,7 @@ app.UseCors(options =>
 
 app.MapControllers();
 app.MapGet("/", async context => context.Response.Redirect("/swagger"));
-app.MapHub<ChatHub>(MaxangerRoutes.Chat.Hub);
+app.MapHub<ChatChatHub>(MaxangerRoutes.Chat.Hub);
 // if (app.Environment.IsDevelopment())
 // {
     app.UseSwagger();

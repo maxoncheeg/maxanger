@@ -12,4 +12,5 @@ public class Message : IMessage
     public required IOperator From { get; set; }
     public DateTime Date { get; set; } = DateTime.Now;
     public IOperator? WhisperTo { get; set; }
+    public bool RolePlay { get; set; }
 }

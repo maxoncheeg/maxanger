@@ -11,4 +11,5 @@ public interface IMessage
     public IOperator From { get; set; }
     public DateTime Date { get; set; }
     public IOperator? WhisperTo { get; set; }
+    public bool RolePlay { get; set; }
 }
