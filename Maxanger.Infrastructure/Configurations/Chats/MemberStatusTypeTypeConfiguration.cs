@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Maxanger.Infrastructure.Configurations.Chats;
 
-public class MemberStatusTypeConfiguration : IEntityTypeConfiguration<MemberStatus>
+public class MemberStatusTypeTypeConfiguration : IEntityTypeConfiguration<MemberStatusType>
 {
-    public void Configure(EntityTypeBuilder<MemberStatus> builder)
+    public void Configure(EntityTypeBuilder<MemberStatusType> builder)
     {
         builder.Property(x => x.Id).HasColumnName("id");
         builder.Property(x => x.Name).HasColumnName("name");
         
-        builder.ToTable("member_statuses");
+        builder.ToTable("member_status_types");
     }
 }

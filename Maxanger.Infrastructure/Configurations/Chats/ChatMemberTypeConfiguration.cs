@@ -18,7 +18,7 @@ public class ChatMemberTypeConfiguration : IEntityTypeConfiguration<ChatMember>
 
         builder.HasOne<MemberRole>(x => x.MemberRole).WithMany(x => x.ChatMembers)
             .HasForeignKey(x => x.MemberRoleId);
-        builder.HasOne<MemberStatus>(x => x.MemberStatus).WithMany(x => x.ChatMembers)
+        builder.HasOne<MemberStatusType>(x => x.MemberStatusType).WithMany(x => x.ChatMembers)
             .HasForeignKey(x => x.MemberStatusId);
         builder.HasOne<User>(x => x.User).WithMany(x => x.ChatMembers)
             .HasForeignKey(x => x.UserId);

@@ -8,7 +8,7 @@ public class ChatMember
     public int MemberStatusId { get; set; }
     public int MemberRoleId { get; set; }
     
-    public MemberStatus MemberStatus { get; set; }
+    public MemberStatusType MemberStatusType { get; set; }
     public MemberRole MemberRole { get; set; }
     public Chat Chat { get; set; }
     public User User { get; set; }

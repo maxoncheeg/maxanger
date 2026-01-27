@@ -2,7 +2,8 @@
 
 public class PollVote
 {
-    public long PoolId { get; set; }
+    public int Id { get; set; }
+    public long PollId { get; set; }
     public long UserId { get; set; }
     
     public User User { get; set; }

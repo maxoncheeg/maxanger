@@ -2,7 +2,8 @@
 
 public class PollOption
 {
-    public long PoolId { get; set; }
+    public long Id { get; set; }
+    public long PollId { get; set; }
     public string Text { get; set; }
     
     public Poll Poll { get; set; }
