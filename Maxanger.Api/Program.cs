@@ -4,6 +4,7 @@ using Asp.Versioning.ApiExplorer;
 using Maxanger.Api.Controllers.Routes;
 using Maxanger.Api.Controllers.v1.Hubs;
 using Maxanger.Api.Middlewares;
+using Maxanger.CompositionRoot;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -48,6 +49,12 @@ builder.Services
         //options.SwaggerDoc("v3", new OpenApiInfo() { Title = "CodeVersioning", Version = "v3" });
     });
 builder.Services.AddSignalR();
+var configuration = builder.Configuration;
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
+                       throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+
+await builder.Services.AddPostgresDatabase(connectionString);
+
 var app = builder.Build();
 
 
