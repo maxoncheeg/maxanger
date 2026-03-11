@@ -6,8 +6,5 @@ namespace Maxanger.Domain.Parsers.CommandMatchers.MessageMatcher;
 
 public partial class MessageCommandMatcher() : AbstractRegexCommandMatcher(CommandAction.SendMessage), IMessageCommandMatcher
 {
-    protected override Regex GetMatchRegex() => CommandRegex();
-
-    [GeneratedRegex(@"^/m(\s)+(.+)$", RegexOptions.IgnoreCase)]
-    private static partial Regex CommandRegex();
+    protected override Regex GetMatchRegex() => new(@"^/m(\s)+(.+)$", RegexOptions.IgnoreCase);
 }

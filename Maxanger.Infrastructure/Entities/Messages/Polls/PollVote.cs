@@ -1,6 +1,8 @@
-﻿namespace Maxanger.Infrastructure.Entities.Messages.Polls;
+﻿using Maxanger.Infrastructure.Entities.Abstract;
 
-public class PollVote
+namespace Maxanger.Infrastructure.Entities.Messages.Polls;
+
+public class PollVote : IEntity
 {
     public int Id { get; set; }
     public long PollId { get; set; }

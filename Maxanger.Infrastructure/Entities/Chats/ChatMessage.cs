@@ -1,9 +1,9 @@
-﻿using Maxanger.Infrastructure.Entities.Messages;
-using Maxanger.Infrastructure.Entities.Messages.Polls;
+﻿using Maxanger.Infrastructure.Entities.Abstract;
+using Maxanger.Infrastructure.Entities.Messages;
 
 namespace Maxanger.Infrastructure.Entities.Chats;
 
-public class ChatMessage
+public class ChatMessage : IEntity
 {
     public long Id { get; set; }
     public long ChatId { get; set; }

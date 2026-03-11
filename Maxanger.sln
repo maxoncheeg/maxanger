@@ -10,10 +10,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maxanger.Application", "Max
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DC5FC657-7D29-42F3-834C-7E11F40D1556}"
 	ProjectSection(SolutionItems) = preProject
-		compose.yaml = compose.yaml
+		Environments\compose.yaml = Environments\compose.yaml
+		Environments\nginx\conf.d\nginx.conf = Environments\nginx\conf.d\nginx.conf
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maxanger.Infrastructure", "Maxanger.Infrastructure\Maxanger.Infrastructure.csproj", "{F5218F53-A3D7-4468-BB61-AAB45A66A598}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maxanger.CompositionRoot", "Maxanger.CompositionRoot\Maxanger.CompositionRoot.csproj", "{63D637BC-C937-4725-8A11-9E831561E2D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,5 +44,11 @@ Global
 		{F5218F53-A3D7-4468-BB61-AAB45A66A598}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5218F53-A3D7-4468-BB61-AAB45A66A598}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5218F53-A3D7-4468-BB61-AAB45A66A598}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63D637BC-C937-4725-8A11-9E831561E2D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63D637BC-C937-4725-8A11-9E831561E2D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63D637BC-C937-4725-8A11-9E831561E2D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63D637BC-C937-4725-8A11-9E831561E2D7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
 EndGlobal

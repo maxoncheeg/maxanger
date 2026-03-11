@@ -9,11 +9,7 @@ public class WhisperTypeConfiguration : IEntityTypeConfiguration<Whisper>
 {
     public void Configure(EntityTypeBuilder<Whisper> builder)
     {
-        builder.Property(x => x.Id).HasColumnName("id");
-        builder.Property(x => x.Text).HasColumnName("text");
-        builder.Property(x => x.ToId).HasColumnName("to_id");
-        
-        builder.ToTable("whispers").HasKey(x => x.Id);
+        builder.ToTable("whispers");
         
         builder.HasOne<User>(x => x.To).WithMany(x => x.Whispers).HasForeignKey(x => x.ToId);
 

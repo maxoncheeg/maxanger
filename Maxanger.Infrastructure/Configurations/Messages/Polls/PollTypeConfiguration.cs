@@ -9,10 +9,7 @@ public class PollTypeConfiguration : IEntityTypeConfiguration<Poll>
 {
     public void Configure(EntityTypeBuilder<Poll> builder)
     {
-        builder.Property(x => x.Id).HasColumnName("id");
-        builder.Property(x => x.Name).HasColumnName("text");
-        
-        builder.ToTable("polls").HasKey(x => x.Id);
+        builder.ToTable("polls");
 
         builder.HasBaseType<MessageContent>();
     }

@@ -1,12 +1,13 @@
-﻿using Maxanger.Infrastructure.Entities.Chats;
+﻿using Maxanger.Domain.Enums;
+using Maxanger.Infrastructure.Entities.Chats;
 
 namespace Maxanger.Infrastructure.Entities.Messages;
 
 public class Event : MessageContent
 {
-    public int StatusTypeId { get; set; }
+    public MemberStatus NewStatus { get; set; }
+    public MemberStatus PreviousStatus { get; set; }
     public long AffectedUserId { get; set; }
 
     public User AffectedUser { get; set; }
-    public MemberStatusType StatusType { get; set; }
 }

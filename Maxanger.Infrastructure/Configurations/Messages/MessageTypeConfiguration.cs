@@ -8,10 +8,7 @@ public class MessageTypeConfiguration : IEntityTypeConfiguration<Message>
 {
     public void Configure(EntityTypeBuilder<Message> builder)
     {
-        builder.Property(x => x.Id).HasColumnName("id");
-        builder.Property(x => x.Text).HasColumnName("text");
-        
-        builder.ToTable("messages").HasKey(x => x.Id);
+        builder.ToTable("messages");
 
         builder.HasBaseType<MessageContent>();
     }

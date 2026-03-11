@@ -1,6 +1,8 @@
-﻿namespace Maxanger.Infrastructure.Entities.Chats;
+﻿using Maxanger.Infrastructure.Entities.Abstract;
 
-public class Chat
+namespace Maxanger.Infrastructure.Entities.Chats;
+
+public class Chat : IEntity
 {
     public long Id { get; set; }
     public string Name { get; set; }
