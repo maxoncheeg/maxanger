@@ -1,6 +1,4 @@
-﻿using Maxanger.Domain.Interpreters.Abstract;
-
-namespace Maxanger.Api.Services;
+﻿namespace Maxanger.Api.Services;
 
 public class ApiInterpreterService
 {

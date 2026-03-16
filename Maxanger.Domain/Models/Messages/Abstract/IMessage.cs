@@ -1,15 +1,13 @@
-﻿using Maxanger.Domain.Models.Chats.Abstract;
-using Maxanger.Domain.Models.Users.Abstract;
+﻿using Maxanger.Domain.Enums;
 
 namespace Maxanger.Domain.Models.Messages.Abstract;
 
 public interface IMessage
 {
-    public long Id { get; set; }
-    public string Text { get; set; }
-    public IChat Chat { get; set; } 
-    public IOperator From { get; set; }
-    public DateTime Date { get; set; }
-    public IOperator? WhisperTo { get; set; }
-    public bool RolePlay { get; set; }
+    public long Id { get; }
+    public long ChatId { get; }
+    public long FromId { get; }
+    public MessageType Type { get; }
+    public DateTime Date { get; }
+    public string Payload { get; }
 }

@@ -8,16 +8,14 @@ namespace Maxanger.Infrastructure.Entities;
 public class User : IEntity
 {
     public long Id { get; set; }
-    public string Username { get; set; }
-    public string Email { get; set; }
+    public string Username { get; set; } = null!;
+    public string Email { get; set; } = null!;
     public DateTime Birthday { get; set; }
     public DateTime LastLogin { get; set; }
     public DateTime RegistrationDate { get; set; }
     
-    public IList<ChatMember> ChatMembers { get; set; }
-    public IList<ChatMessage> ChatMessages { get; set; }
-    public IList<Whisper> Whispers { get; set; }
-    public IList<Event> Events { get; set; }
-    public IList<PollVote> PollVotes { get; set; }
-    public UserCredentials UserCredentials { get; set; }
+    public IList<ChatMember> ChatMembers { get; set; } = null!;
+    public IList<Message> ChatMessages { get; set; } = null!;
+    public IList<PollVote> PollVotes { get; set; } = null!;
+    public UserCredentials UserCredentials { get; set; } = null!;
 }

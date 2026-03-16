@@ -10,6 +10,9 @@ public class ChatMember : IEntity
     public long UserId { get; set; }
     public MemberStatus Status { get; set; }
     public MemberRole Role { get; set; }
-    public Chat Chat { get; set; }
-    public User User { get; set; }
+    public DateTime AddedAt { get; set; }
+    public DateTime UpdatedAt { get; set; }
+
+    public Chat Chat { get; set; } = null!;
+    public User User { get; set; } = null!;
 }

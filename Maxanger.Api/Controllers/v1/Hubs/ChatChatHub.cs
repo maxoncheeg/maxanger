@@ -1,19 +1,17 @@
-﻿using Asp.Versioning;
-using Maxanger.Application.CommandExecutors;
+﻿using System.Text.Json;
+using Asp.Versioning;
 using Maxanger.Application.Hubs.Abstract;
-using Maxanger.Domain.Interpreters;
-using Maxanger.Domain.Interpreters.Abstract;
-using Maxanger.Domain.Messengers;
-using Maxanger.Domain.Messengers.Abstract;
-using Maxanger.Domain.Parsers;
-using Maxanger.Domain.Parsers.Abstract;
-using Maxanger.Domain.Parsers.CommandBases;
-using Maxanger.Domain.Parsers.CommandParseHandlers;
-using Maxanger.Domain.Shells;
-using Maxanger.Domain.Shells.Abstract;
 using Microsoft.AspNetCore.SignalR;
 
 namespace Maxanger.Api.Controllers.v1.Hubs;
+
+public class NewMessageRequest
+{
+    public long ChatId { get; set; }
+    public long UserId { get; set; }
+    public string Type { get; set; } = null!;
+    public JsonElement Payload { get; set; }
+}
 
 [ApiVersion(1)]
 public class ChatChatHub : Hub, IChatHub

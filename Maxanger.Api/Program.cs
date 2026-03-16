@@ -1,6 +1,5 @@
 using System.Reflection;
 using Asp.Versioning;
-using Asp.Versioning.ApiExplorer;
 using Maxanger.Api.Controllers.Routes;
 using Maxanger.Api.Controllers.v1.Hubs;
 using Maxanger.Api.Middlewares;
@@ -53,7 +52,7 @@ var configuration = builder.Configuration;
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
                        throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
-await builder.Services.AddPostgresDatabase(connectionString);
+await builder.Services.AddPostgresDatabase(connectionString).MigratePostgresDatabaseAsync();
 
 var app = builder.Build();
 

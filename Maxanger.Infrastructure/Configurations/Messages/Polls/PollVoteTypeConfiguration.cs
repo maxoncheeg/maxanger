@@ -9,9 +9,9 @@ public class PollVoteTypeConfiguration : IEntityTypeConfiguration<PollVote>
 {
     public void Configure(EntityTypeBuilder<PollVote> builder)
     {
-        builder.ToTable("poll_votes").HasKey(x => x.Id);
-
-        builder.HasOne<Poll>(x => x.Poll).WithMany(x => x.Votes).HasForeignKey(x => x.PollId);
+        builder.ToTable("poll_votes").HasKey(x => new {x.PollOptionId, x.UserId});
+        
         builder.HasOne<User>(x => x.User).WithMany(x => x.PollVotes).HasForeignKey(x => x.UserId);
+        builder.HasOne<PollOption>(x => x.PollOption).WithMany(x => x.PollVotes).HasForeignKey(x => x.PollOptionId);
     }
 }

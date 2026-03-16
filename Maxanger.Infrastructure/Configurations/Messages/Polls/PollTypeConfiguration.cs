@@ -10,7 +10,7 @@ public class PollTypeConfiguration : IEntityTypeConfiguration<Poll>
     public void Configure(EntityTypeBuilder<Poll> builder)
     {
         builder.ToTable("polls");
-
-        builder.HasBaseType<MessageContent>();
+        
+        builder.HasOne<Message>(x => x.Message).WithOne(x=> x.Poll).HasForeignKey<Poll>(x => x.MessageId);
     }
 }

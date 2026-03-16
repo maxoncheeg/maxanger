@@ -9,11 +9,9 @@ public interface IApplicationDbContext: IDbContext
 {
     IQueryable<Chat> Chats { get; }
     IQueryable<ChatMember> ChatMembers { get; }
-    IQueryable<ChatMessage> ChatMessages { get; }
+    IQueryable<Message> ChatMessages { get; }
 
     IQueryable<Message> Messages { get; }
-    IQueryable<Event> Events { get; }
-    IQueryable<Whisper> Whispers { get; }
     
     IQueryable<Poll> Polls { get; }
     IQueryable<PollOption> PollOptions { get; }

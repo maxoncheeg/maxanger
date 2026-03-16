@@ -8,8 +8,8 @@ public class UserTypeConfiguration : IEntityTypeConfiguration<User>
 {
     public void Configure(EntityTypeBuilder<User> builder)
     {
-        builder.Property(x => x.Email).HasColumnName("email").IsRequired();
-        builder.Property(x => x.Username).HasColumnName("username").IsRequired();
+        builder.Property(x => x.Email).IsRequired();
+        builder.Property(x => x.Username).IsRequired();
 
         builder.ToTable("users").HasKey(x => x.Id);
         

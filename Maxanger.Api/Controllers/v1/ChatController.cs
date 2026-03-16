@@ -14,9 +14,9 @@ public class ChatController(IMediator mediator) : AbstractController
     [HttpGet(MaxangerRoutes.Chat.Base)]
     public IActionResult Get(int chatId, string username)
     {
-        var usernameMessages = Domain.Models.Maxanger.GetInstance().GetMessages(chatId, username);
+
         
-        return BaseResponse(StatusCodes.Status200OK, usernameMessages);
+        return BaseResponse(StatusCodes.Status200OK, "");
     }
 
     [HttpPost(MaxangerRoutes.Chat.SendMessage)]

@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using Maxanger.Domain.Enums;
 using Maxanger.Infrastructure.Contexts.Abstract;
 using Maxanger.Infrastructure.Entities;
 using Maxanger.Infrastructure.Entities.Chats;
@@ -13,11 +12,9 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 {
     public IQueryable<Chat> Chats => Set<Chat>();
     public IQueryable<ChatMember> ChatMembers => Set<ChatMember>();
-    public IQueryable<ChatMessage> ChatMessages => Set<ChatMessage>();
+    public IQueryable<Message> ChatMessages => Set<Message>();
     
     public IQueryable<Message> Messages => Set<Message>();
-    public IQueryable<Event> Events => Set<Event>();
-    public IQueryable<Whisper> Whispers => Set<Whisper>();
     
     public IQueryable<Poll> Polls => Set<Poll>();
     public IQueryable<PollOption> PollOptions => Set<PollOption>();

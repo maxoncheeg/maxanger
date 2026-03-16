@@ -1,5 +1,4 @@
-﻿using Maxanger.Domain.Enums;
-using Maxanger.Domain.Models.Commands.Abstract;
+﻿using Maxanger.Domain.Models.Commands.Abstract;
 
 namespace Maxanger.Domain.Models.Parsers.Abstract;
 
