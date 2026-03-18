@@ -10,7 +10,6 @@ public class Message : IEntity
     public long Id { get; set; }
     public long ChatId { get; set; }
     public long? ReplyToMessageId { get; set; }
-    public string? ReplyPreview { get; set; }
     public long FromId { get; set; }
     public MessageType Type { get; set; }
     public MessageStatus Status { get; set; }

@@ -1,31 +1,32 @@
 ﻿using Asp.Versioning;
 using Maxanger.Api.Controllers.Abstract;
 using Maxanger.Api.Controllers.Routes;
+using Maxanger.Api.Models.Messages;
+using Maxanger.Application.Services.Messages.Abstract;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Maxanger.Api.Controllers.v1;
 
 [ApiVersion(1)]
-public class ChatController(IMediator mediator) : AbstractController
+public class ChatController(IMediator mediator, IMessageService messageService) : AbstractController
 {
 
-    
-    [HttpGet(MaxangerRoutes.Chat.Base)]
-    public IActionResult Get(int chatId, string username)
-    {
-
-        
-        return BaseResponse(StatusCodes.Status200OK, "");
-    }
 
     [HttpPost(MaxangerRoutes.Chat.SendMessage)]
-    public IActionResult SendMessage(int chatId, string username, string message)
+    public async Task<IActionResult> SendMessage([FromBody]MessageOnSend message)
     {
-        string command = $"/m {chatId} {message}";
-        
+        var messages = await messageService.SendMessageAsync(message);
 
-        return BaseResponse(StatusCodes.Status201Created);
+        return StatusCode(StatusCodes.Status201Created, messages);
+    }
+    
+    [HttpGet(MaxangerRoutes.Chat.Base)]
+    public async Task<IActionResult> SendMessage(long chatId, int take = 50, int page = 0)
+    {
+        var messages = await messageService.GetChatMessagesAsync(chatId, take, page);
+
+        return StatusCode(StatusCodes.Status201Created, messages);
     }
     
     [HttpPost(MaxangerRoutes.Chat.Create)]

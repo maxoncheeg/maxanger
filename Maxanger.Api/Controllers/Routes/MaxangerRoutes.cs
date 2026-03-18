@@ -53,4 +53,9 @@ public static class MaxangerRoutes
         }
     }
 
+    public static class MaxangerHub
+    {
+        public const string SendMessage = "sendMessage";
+        public const string OnNewMessage = "onReceiveMessage";
+    }
 }

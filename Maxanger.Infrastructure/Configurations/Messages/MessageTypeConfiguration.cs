@@ -12,8 +12,6 @@ public class MessageTypeConfiguration : IEntityTypeConfiguration<Message>
 {
     public void Configure(EntityTypeBuilder<Message> builder)
     {
-        builder.Property(x => x.ReplyPreview).HasMaxLength(100);
-        
         builder.Property(x => x.Type).HasConversion(
             v => DatabaseEnumConvertor.ConvertToString(v),
             v => DatabaseEnumConvertor.ConvertStringToEnum<MessageType>(v));

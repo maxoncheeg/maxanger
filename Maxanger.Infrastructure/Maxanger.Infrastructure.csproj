@@ -23,11 +23,11 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Handlers\" />
       <Folder Include="Migrations\" />
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Maxanger.Application\Maxanger.Application.csproj" />
       <ProjectReference Include="..\Maxanger.Domain\Maxanger.Domain.csproj" />
     </ItemGroup>
 

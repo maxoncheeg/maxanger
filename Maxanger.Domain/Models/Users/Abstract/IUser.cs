@@ -1,6 +1,7 @@
-﻿namespace Maxanger.Domain.Models.Users.Abstract;
+namespace Maxanger.Domain.Models.Users.Abstract;
 
-public class IUser
+public interface IUser
 {
-    
+    public long Id { get; }
+    public string Username { get; }
 }
