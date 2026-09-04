@@ -10,7 +10,11 @@ public static class DatabaseExtensions
     public static IServiceCollection AddPostgresDatabase(this IServiceCollection @this, string connectionString)
     {
         @this.AddDbContext<IApplicationDbContext, ApplicationDbContext>(options =>
-            options.UseNpgsql(connectionString, x => x.MigrationsAssembly("Maxanger.Infrastructure")), ServiceLifetime.Transient);
+            options.UseNpgsql(connectionString, sqlOptions =>
+            {
+                sqlOptions.ConfigureDataSource(builder => builder.EnableDynamicJson());
+                sqlOptions.MigrationsAssembly("Maxanger.Infrastructure");
+            }), ServiceLifetime.Scoped);
         
         // using var scope = @this.BuildServiceProvider().CreateScope();
         // var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();

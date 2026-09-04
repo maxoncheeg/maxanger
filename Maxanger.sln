@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maxanger.Infrastructure", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maxanger.CompositionRoot", "Maxanger.CompositionRoot\Maxanger.CompositionRoot.csproj", "{63D637BC-C937-4725-8A11-9E831561E2D7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maxanger.Infrastructure.Tests", "Maxanger.Infrastructure.Tests\Maxanger.Infrastructure.Tests.csproj", "{9544281F-FC59-4803-B6E5-6F2C211F3FA8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +50,10 @@ Global
 		{63D637BC-C937-4725-8A11-9E831561E2D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63D637BC-C937-4725-8A11-9E831561E2D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63D637BC-C937-4725-8A11-9E831561E2D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9544281F-FC59-4803-B6E5-6F2C211F3FA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9544281F-FC59-4803-B6E5-6F2C211F3FA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9544281F-FC59-4803-B6E5-6F2C211F3FA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9544281F-FC59-4803-B6E5-6F2C211F3FA8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection

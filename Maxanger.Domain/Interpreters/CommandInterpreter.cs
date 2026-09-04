@@ -1,7 +1,7 @@
 ﻿using Maxanger.Domain.Interpreters.Abstract;
+using Maxanger.Domain.Models;
 using Maxanger.Domain.Models.Commands.Abstract;
 using Maxanger.Domain.Models.Interpreters.Abstract;
-using Maxanger.Domain.Models.Users.Abstract;
 
 namespace Maxanger.Domain.Interpreters;
 

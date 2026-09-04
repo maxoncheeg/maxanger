@@ -1,27 +1,56 @@
-﻿using Asp.Versioning;
-using Maxanger.Api.Controllers.Routes;
+﻿using Maxanger.Api.Controllers.Routes;
+using Maxanger.Api.Models.Chats;
 using Maxanger.Api.Models.Messages;
 using Maxanger.Application.Hubs.Abstract;
+using Maxanger.Application.Models.Chats.Abstract;
+using Maxanger.Application.Services.Chats.Abstract;
 using Maxanger.Application.Services.Messages.Abstract;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 
 namespace Maxanger.Api.Controllers.v1.Hubs;
 
-[ApiVersion(1)]
-public class MaxangerHub(IMessageService messageService) : Hub, IChatHub
+public class MaxangerHub(IMessageService messageService, IChatService chatService) : Hub, IChatHub
 {
-    
     [HubMethodName(MaxangerRoutes.MaxangerHub.SendMessage)]
     public async Task NewMessage([FromQuery] MessageOnSend messageOnSend)
     {
         var messages = await messageService.SendMessageAsync(messageOnSend);
-        Console.WriteLine("\nMESSAGE: " + messages.SentMessages.First().Payload.GetRawText() ?? "aboba");
-        Console.WriteLine("\nREPLY: " + messages.Originals?.First().Payload.GetRawText() ?? "aboba");
-        
+
+        foreach (var message in messages.SentMessages)
+        {
+            foreach (var data in message.Metadata)
+            {
+                Console.WriteLine("\t\t" + data.Key + ": " + data.Value.ToString());
+            }
+        }
+
         //await Clients.All.SendAsync("messageReceived", username, message);
     }
+
+
+    [HubMethodName(MaxangerRoutes.MaxangerHub.GetChats)]
+    public async Task<IList<IChatInfo>> GetChatsAsync([FromQuery] GetChatsBody getChatsBody)
+    {
+        var chats = await chatService.GetChatsAsync(getChatsBody.PageSize, getChatsBody.Page,
+            getChatsBody.LastUpdatedTime);
+        
+        Console.WriteLine(getChatsBody.Page + " " + getChatsBody.PageSize);
+        
+        return chats;
+    }
     
+    [HubMethodName(MaxangerRoutes.MaxangerHub.GetMessages)]
+    public async Task<IList<IChatInfo>> GetMessagesAsync([FromQuery] GetChatsBody getChatsBody)
+    {
+        var chats = await chatService.GetChatsAsync(getChatsBody.PageSize, getChatsBody.Page,
+            getChatsBody.LastUpdatedTime);
+        
+        Console.WriteLine(getChatsBody.Page + " " + getChatsBody.PageSize);
+        
+        return chats;
+    }
+
     [HubMethodName("executeCommand")]
     public async Task ExecuteCommandAsync(string @operator, string command)
     {

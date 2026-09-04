@@ -2,17 +2,16 @@
 using Maxanger.Api.Controllers.Abstract;
 using Maxanger.Api.Controllers.Routes;
 using Maxanger.Api.Models.Messages;
+using Maxanger.Application.Services.Chats.Abstract;
 using Maxanger.Application.Services.Messages.Abstract;
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Maxanger.Api.Controllers.v1;
 
 [ApiVersion(1)]
-public class ChatController(IMediator mediator, IMessageService messageService) : AbstractController
+public class ChatController(IChatService chatService, IMessageService messageService) : AbstractController
 {
-
-
+    
     [HttpPost(MaxangerRoutes.Chat.SendMessage)]
     public async Task<IActionResult> SendMessage([FromBody]MessageOnSend message)
     {
@@ -29,14 +28,12 @@ public class ChatController(IMediator mediator, IMessageService messageService) 
         return StatusCode(StatusCodes.Status201Created, messages);
     }
     
-    [HttpPost(MaxangerRoutes.Chat.Create)]
-    public IActionResult CreateChat(string chatName, string username)
+    [HttpPost(MaxangerRoutes.Chat.GetChats)]
+    public async Task<IActionResult> CreateChat(int take = 50, int page = 0)
     {
-        string command = $"/chat create {chatName}";
-        
+        var messages = await chatService.GetChatsAsync(take, page, DateTime.UtcNow - TimeSpan.FromDays(365));
 
-        
-        return BaseResponse(StatusCodes.Status201Created);
+        return StatusCode(StatusCodes.Status201Created, messages);
     }
     
     [HttpPost(MaxangerRoutes.Chat.WhisperMessage)]

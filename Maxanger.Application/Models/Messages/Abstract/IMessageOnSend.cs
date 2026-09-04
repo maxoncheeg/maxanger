@@ -1,12 +1,12 @@
-﻿using System.Text.Json;
-using Maxanger.Domain.Enums;
+﻿using Maxanger.Domain.Enums;
 
 namespace Maxanger.Application.Models.Messages.Abstract;
 
 public interface IMessageOnSend
 {
-    public long ChatId { get; set; }
-    public long? ReplyToId { get; set; }
-    public JsonElement Payload { get; set; }
-    public MessageType MessageType { get; set; }
+    public long ChatId { get; }
+    public long? ReplyToId { get; }
+    public Dictionary<string, object>? Metadata { get; }
+    public string Content { get; }
+    public MessageType MessageType { get; }
 }

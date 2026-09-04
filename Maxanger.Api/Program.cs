@@ -1,4 +1,5 @@
 using System.Reflection;
+using System.Text.Json.Serialization;
 using Maxanger.Api.Configurations;
 using Maxanger.Api.Controllers.Routes;
 using Maxanger.Api.Controllers.v1.Hubs;
@@ -11,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddVersioning();
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddApplicationServices().AddApiServices().AddMediatRHandlers();
+builder.Services.AddDomainServices().AddApiServices().AddMediatRHandlers();
 
 builder.Services
     .AddControllers()
@@ -19,13 +20,31 @@ builder.Services
     {
         options.JsonSerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter());
     });
+
+builder.Services.AddSignalR()
+    .AddJsonProtocol(options =>
+    {
+        options.PayloadSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyHeader()
+            .AllowAnyMethod()
+            // Для отладки разрешите любой домен, потом замените на конкретный
+            .SetIsOriginAllowed(_ => true) 
+            .AllowCredentials(); // Важно для куков/авторизации
+    });
+});
 ;
 
 builder.Services
     .AddSwaggerGen(options =>
     {
-        options.SwaggerDoc("v1", new OpenApiInfo() { Title = "CodeVersioning", Version = "v1" });
-        options.SwaggerDoc("v2", new OpenApiInfo() { Title = "CodeVersioning", Version = "v2" });
+        options.SwaggerDoc("v1", new OpenApiInfo() { Title = "CodeVersioning", Version = "1" });
+        options.SwaggerDoc("v2", new OpenApiInfo() { Title = "CodeVersioning", Version = "2" });
         options.AddSignalRSwaggerGen();
     });
 
@@ -41,6 +60,8 @@ await builder.Services.AddPostgresDatabase(connectionString).MigratePostgresData
 var app = builder.Build();
 
 app.UseMiddleware<ExceptionHandlerMiddleware>();
+
+app.UseCors("AllowAll"); 
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

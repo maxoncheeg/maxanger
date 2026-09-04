@@ -4,4 +4,10 @@ using MediatR;
 
 namespace Maxanger.Application.CQRS.Commands.Messages;
 
-public record SendMessageCommand(long UserId, long ChatId, string Payload, MessageType Type, long? ReplyToId = null) : IRequest<MessageResponse>;
+public record SendMessageCommand(
+    long UserId,
+    long ChatId,
+    string Content,
+    MessageType Type,
+    Dictionary<string, object>? Metadata = null,
+    long? ReplyToId = null) : IRequest<MessageResponse>;

@@ -1,5 +1,5 @@
-﻿using Maxanger.Infrastructure.Entities;
-using Maxanger.Infrastructure.Entities.Messages.Polls;
+﻿using Maxanger.Domain.Entities.Messages.Polls;
+using Maxanger.Domain.Entities.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

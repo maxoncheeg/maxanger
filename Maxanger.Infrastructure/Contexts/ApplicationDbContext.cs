@@ -1,9 +1,9 @@
 ﻿using System.Reflection;
+using Maxanger.Domain.Entities.Access;
+using Maxanger.Domain.Entities.Chats;
+using Maxanger.Domain.Entities.Messages;
+using Maxanger.Domain.Entities.Users;
 using Maxanger.Infrastructure.Contexts.Abstract;
-using Maxanger.Infrastructure.Entities;
-using Maxanger.Infrastructure.Entities.Chats;
-using Maxanger.Infrastructure.Entities.Messages;
-using Maxanger.Infrastructure.Entities.Messages.Polls;
 using Microsoft.EntityFrameworkCore;
 
 namespace Maxanger.Infrastructure.Contexts;
@@ -16,13 +16,14 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     
     public IQueryable<Message> Messages => Set<Message>();
     
-    public IQueryable<Poll> Polls => Set<Poll>();
-    public IQueryable<PollOption> PollOptions => Set<PollOption>();
-    public IQueryable<PollVote> PollVotes => Set<PollVote>();
+    // public IQueryable<Poll> Polls => Set<Poll>();
+    // public IQueryable<PollOption> PollOptions => Set<PollOption>();
+    // public IQueryable<PollVote> PollVotes => Set<PollVote>();
     
     public IQueryable<User> Users => Set<User>();
     public IQueryable<UserCredentials> UserCredentials => Set<UserCredentials>();
-    
+    public IQueryable<AccessTicket> AccessTickets => Set<AccessTicket>();
+
     public async Task CreateAsync<TEntity>(TEntity entity) where TEntity : class
     {
         await Set<TEntity>().AddAsync(entity);
@@ -31,6 +32,11 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     public async Task CreateRangeAsync<TEntity>(IList<TEntity> entities) where TEntity : class
     {
         await Set<TEntity>().AddRangeAsync(entities);
+    }
+
+    public void Create<TEntity>(TEntity entity) where TEntity : class
+    {
+        Set<TEntity>().Add(entity);
     }
 
     public new void Update<TEntity>(TEntity entity) where TEntity : class

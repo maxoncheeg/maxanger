@@ -1,5 +1,4 @@
-﻿using System.Text.Json;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 using Maxanger.Application.Models.Messages.Abstract;
 using Maxanger.Domain.Enums;
 
@@ -17,5 +16,6 @@ public class SentMessage : ISentMessage
     public MessageType Type { get; init; }
     public DateTime CreatedAt { get; init; }
     public DateTime UpdatedAt { get; init; }
-    public JsonElement Payload { get; init; }
+    public Dictionary<string, object>? Metadata { get; init; }
+    public string Content { get; init; }
 }

@@ -27,8 +27,8 @@ public static class MaxangerRoutes
         public const string Base = Api + "/chat";
         public const string SendMessage = Base + "/send";
         public const string WhisperMessage = Base + "/whisper";
-        public const string Create = Base + "/create";
-        public const string Hub = Base + "/hub";
+        public const string GetChats = Base + "/get";
+        public const string Hub = "api/hub";
     }
 
     public static class Auth
@@ -42,6 +42,7 @@ public static class MaxangerRoutes
         public const string Logout = Base + "/logout";
         public const string LoginByToken = Base + "/token/login";
         public const string RefreshToken = Base + "/token/refresh";
+        public const string Ticket = Base + "/ticket";
 
         public static class OAuth
         {
@@ -56,6 +57,8 @@ public static class MaxangerRoutes
     public static class MaxangerHub
     {
         public const string SendMessage = "sendMessage";
+        public const string GetChats = "getChats";
+        public const string GetMessages = "getMessages";
         public const string OnNewMessage = "onReceiveMessage";
     }
 }

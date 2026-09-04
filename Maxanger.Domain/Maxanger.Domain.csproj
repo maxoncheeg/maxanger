@@ -8,7 +8,6 @@
 
     <ItemGroup>
       <Folder Include="Messages\" />
-      <Folder Include="Services\Abstract\" />
     </ItemGroup>
 
 </Project>

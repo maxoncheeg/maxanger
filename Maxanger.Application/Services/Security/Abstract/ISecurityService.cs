@@ -2,5 +2,5 @@
 
 public interface ISecurityService
 {
-    public long? GetCurrentUserIdAsync();
+    public long? GetCurrentUserId();
 }

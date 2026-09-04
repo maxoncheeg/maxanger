@@ -1,4 +1,4 @@
-﻿using Maxanger.Infrastructure.Entities.Messages.Polls;
+﻿using Maxanger.Domain.Entities.Messages.Polls;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

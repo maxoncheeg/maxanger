@@ -1,8 +1,6 @@
-﻿using Maxanger.Domain.Models.Users.Abstract;
+﻿namespace Maxanger.Application.Models.Users;
 
-namespace Maxanger.Application.Models.Users;
-
-public class User : IUser
+public class User 
 {
     public long Id { get; set; }
     public string Username { get; set; } = string.Empty;

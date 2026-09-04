@@ -1,7 +1,7 @@
-﻿using Maxanger.Domain.Enums;
+﻿using Maxanger.Domain.Entities.Chats;
+using Maxanger.Domain.Entities.Users;
+using Maxanger.Domain.Enums;
 using Maxanger.Infrastructure.Convertors;
-using Maxanger.Infrastructure.Entities;
-using Maxanger.Infrastructure.Entities.Chats;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

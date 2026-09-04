@@ -1,7 +1,7 @@
-﻿using Maxanger.Infrastructure.Entities;
-using Maxanger.Infrastructure.Entities.Chats;
-using Maxanger.Infrastructure.Entities.Messages;
-using Maxanger.Infrastructure.Entities.Messages.Polls;
+﻿using Maxanger.Domain.Entities.Access;
+using Maxanger.Domain.Entities.Chats;
+using Maxanger.Domain.Entities.Messages;
+using Maxanger.Domain.Entities.Users;
 
 namespace Maxanger.Infrastructure.Contexts.Abstract;
 
@@ -13,12 +13,13 @@ public interface IApplicationDbContext: IDbContext
 
     IQueryable<Message> Messages { get; }
     
-    IQueryable<Poll> Polls { get; }
-    IQueryable<PollOption> PollOptions { get; }
-    IQueryable<PollVote> PollVotes { get; }
+    // IQueryable<Poll> Polls { get; }
+    // IQueryable<PollOption> PollOptions { get; }
+    // IQueryable<PollVote> PollVotes { get; }
     
     IQueryable<User> Users { get; }
     IQueryable<UserCredentials> UserCredentials { get; }
+    IQueryable<AccessTicket> AccessTickets { get; }
     
     
 }

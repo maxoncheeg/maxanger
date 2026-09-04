@@ -3,6 +3,7 @@
 public enum MessageType
 {
     Text,
+    System,
     Whisper,
     UserEvent,
     Poll,

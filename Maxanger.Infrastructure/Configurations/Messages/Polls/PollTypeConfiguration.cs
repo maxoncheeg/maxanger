@@ -1,5 +1,4 @@
-﻿using Maxanger.Infrastructure.Entities.Messages;
-using Maxanger.Infrastructure.Entities.Messages.Polls;
+﻿using Maxanger.Domain.Entities.Messages.Polls;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -11,6 +10,6 @@ public class PollTypeConfiguration : IEntityTypeConfiguration<Poll>
     {
         builder.ToTable("polls");
         
-        builder.HasOne<Message>(x => x.Message).WithOne(x=> x.Poll).HasForeignKey<Poll>(x => x.MessageId);
+        // builder.HasOne<Message>(x => x.Message).WithOne(x=> x.Poll).HasForeignKey<Poll>(x => x.MessageId);
     }
 }

@@ -1,12 +1,8 @@
-﻿using Maxanger.Application.CQRS.Commands.Messages;
-using Maxanger.Application.CQRS.Queries.ChatMembers;
-using Maxanger.Application.CQRS.Queries.Messages;
-using Maxanger.Application.CQRS.Queries.Users;
-using Maxanger.Application.CQRS.Responses.Messages;
+﻿using Maxanger.Application.CQRS.Commands.AccessTickets;
+using Maxanger.Application.CQRS.Commands.Register;
 using Maxanger.Application.CQRS.Responses.Users;
-using Maxanger.Infrastructure.Handlers.ChatMembers;
-using Maxanger.Infrastructure.Handlers.Messages;
-using Maxanger.Infrastructure.Handlers.Users;
+using Maxanger.Application.Handlers.AccessTickets;
+using Maxanger.Application.Handlers.Registration;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -16,24 +12,20 @@ public static class MediatRExtensions
 {
     public static IServiceCollection AddMediatRHandlers(this IServiceCollection services)
     {
-        services
-            .AddTransient<IRequestHandler<GetChatMemberInfoByUserIdQuery, GetChatMemberInfoByUserIdResponse?>,
-                GetChatMemberHandler>()
-            
-            
-            .AddTransient<IRequestHandler<GetMessagesByIdsQuery, IList<MessageResponse>>,
-                GetMessagesHandler>()
-            .AddTransient<IRequestHandler<GetMessagesQuery, IList<MessageResponse>>,
-                GetMessagesHandler>()
-            
-            .AddTransient<IRequestHandler<GetMessageWritersByIdsQuery, IList<MessageWriterResponse>>,
-                GetMessageWriterHandler>()
-            ;
+        // services
+        //     .AddTransient<IRequestHandler<GetChatMemberInfoByUserIdQuery, GetChatMemberInfoByUserIdResponse?>,
+        //         GetChatMemberHandler>()
         
         // commands
         services
-            .AddTransient<IRequestHandler<SendMessageCommand, MessageResponse?>,
-                SendMessageHandler>();
+            .AddTransient<IRequestHandler<CreateAccessTicketCommand, long>,
+                AccessTicketHandler>()
+            
+            .AddTransient<IRequestHandler<RegisterUserWithCodeCommand, UserDto>,
+                UserRegistrationHandler>()
+            
+            ;
+        
 
         return services;
     }

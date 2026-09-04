@@ -1,5 +1,5 @@
-﻿using Maxanger.Domain.Models.Interpreters.Abstract;
-using Maxanger.Domain.Models.Users.Abstract;
+﻿using Maxanger.Domain.Models;
+using Maxanger.Domain.Models.Interpreters.Abstract;
 
 namespace Maxanger.Domain.Shells.Abstract;
 
