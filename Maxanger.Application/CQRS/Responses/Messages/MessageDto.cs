@@ -2,7 +2,7 @@
 
 namespace Maxanger.Application.CQRS.Responses.Messages;
 
-public record MessageResponse() 
+public record MessageDto() 
 {
     public long Id { get; set; }
     public long FromId { get; set; }

@@ -1,5 +1,4 @@
-﻿using Maxanger.Application.CQRS.Responses.Messages;
-using Maxanger.Domain.Enums;
+﻿using Maxanger.Domain.Enums;
 using MediatR;
 
 namespace Maxanger.Application.CQRS.Commands.Messages;
@@ -10,4 +9,4 @@ public record SendMessageCommand(
     string Content,
     MessageType Type,
     Dictionary<string, object>? Metadata = null,
-    long? ReplyToId = null) : IRequest<MessageResponse>;
+    long? ReplyToId = null) : IRequest<long>;

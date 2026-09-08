@@ -1,7 +1,11 @@
 ﻿using Maxanger.Application.CQRS.Commands.AccessTickets;
+using Maxanger.Application.CQRS.Commands.Messages;
 using Maxanger.Application.CQRS.Commands.Register;
+using Maxanger.Application.CQRS.Queries.Messages;
+using Maxanger.Application.CQRS.Responses.Messages;
 using Maxanger.Application.CQRS.Responses.Users;
 using Maxanger.Application.Handlers.AccessTickets;
+using Maxanger.Application.Handlers.Messages;
 using Maxanger.Application.Handlers.Registration;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,6 +27,9 @@ public static class MediatRExtensions
             
             .AddTransient<IRequestHandler<RegisterUserWithCodeCommand, UserDto>,
                 UserRegistrationHandler>()
+            
+            .AddTransient<IRequestHandler<SendMessageCommand, long>, SendMessageHandler>()
+            .AddTransient<IRequestHandler<GetMessagesQuery, IList<MessageDto>>, GetMessagesHandler>()
             
             ;
         

@@ -36,6 +36,24 @@ public class Message : IEntity
             ChatId =  chatId
         };
     }
+    
+    public static Message Create(long id, MessageType type, string content, long fromId, long chatId, Dictionary<string, object>? metadata,
+        long? replyToMessageId)
+    {
+        if (string.IsNullOrEmpty(content))
+            throw new DomainException("EMPTY_CONTENT", "Empty content");
+
+        return new Message
+        {
+            Id = id,
+            Type = type,
+            Content = content,
+            FromId = fromId,
+            ReplyToMessageId = replyToMessageId,
+            Metadata = metadata,
+            ChatId =  chatId
+        };
+    }
 
     public void Edit(string newContent)
     {

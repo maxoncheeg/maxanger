@@ -31,6 +31,11 @@ public static class MaxangerRoutes
         public const string Hub = "api/hub";
     }
 
+    public static class Messages
+    {
+        public const string Base = Api + "/messages";
+    }
+    
     public static class Auth
     {
         public const string Base = Api + "/auth";

@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography;
-using Maxanger.Domain.Abstractions.Hashers;
+﻿using Maxanger.Domain.Abstractions.Hashers;
 
 namespace Maxanger.Infrastructure.Services.Hashers;
 

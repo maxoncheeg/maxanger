@@ -3,4 +3,4 @@ using MediatR;
 
 namespace Maxanger.Application.CQRS.Queries.Messages;
 
-public record GetMessagesQuery(long ChatId, long UserId) : PagedQuery, IRequest<IList<MessageResponse>>;
+public record GetMessagesQuery(long ChatId, long UserId) : PagedQuery, IRequest<IList<MessageDto>>;
