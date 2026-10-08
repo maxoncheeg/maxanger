@@ -7,15 +7,28 @@ namespace Maxanger.CompositionRoot;
 
 public static class DatabaseExtensions
 {
-    public static async Task<IServiceCollection> AddPostgresDatabase(this IServiceCollection @this, string connectionString)
+    public static IServiceCollection AddPostgresDatabase(this IServiceCollection @this, string connectionString)
     {
         @this.AddDbContext<IApplicationDbContext, ApplicationDbContext>(options =>
-            options.UseNpgsql(connectionString, x => x.MigrationsAssembly("Maxanger.Infrastructure")), ServiceLifetime.Transient);
+            options.UseNpgsql(connectionString, sqlOptions =>
+            {
+                sqlOptions.ConfigureDataSource(builder => builder.EnableDynamicJson());
+                sqlOptions.MigrationsAssembly("Maxanger.Infrastructure");
+            }), ServiceLifetime.Scoped);
         
-        using var scope = @this.BuildServiceProvider().CreateScope();
-        var context = scope.ServiceProvider.GetRequiredService<IApplicationDbContext>();
-        await context.MigrateAsync();
+        // using var scope = @this.BuildServiceProvider().CreateScope();
+        // var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        // await context.MigrateAsync();
 
+        return @this;
+    }
+
+    public static async Task<IServiceCollection> MigratePostgresDatabaseAsync(this IServiceCollection @this)
+    {
+        // using var scope = @this.BuildServiceProvider().CreateScope();
+        // var context = scope.ServiceProvider.GetRequiredService<IApplicationDbContext>();
+        // await context.MigrateAsync();
+        
         return @this;
     }
 }
