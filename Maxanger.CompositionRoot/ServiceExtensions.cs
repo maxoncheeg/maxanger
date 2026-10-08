@@ -1,13 +1,16 @@
 ﻿using Maxanger.Domain.Abstractions.Hashers;
 using Maxanger.Domain.Abstractions.UnitOfWork;
 using Maxanger.Domain.Repositories.AccessTicket;
+using Maxanger.Domain.Repositories.Chats;
 using Maxanger.Domain.Repositories.Messages;
 using Maxanger.Domain.Repositories.Users;
 using Maxanger.Domain.Services.AccessTickets;
+using Maxanger.Domain.Services.Chats;
 using Maxanger.Domain.Services.Messages;
 using Maxanger.Domain.Services.Users;
 using Maxanger.Domain.Services.Validators.Password;
 using Maxanger.Infrastructure.Repositories.AccessTickets;
+using Maxanger.Infrastructure.Repositories.Chats;
 using Maxanger.Infrastructure.Repositories.Messages;
 using Maxanger.Infrastructure.Repositories.Users;
 using Maxanger.Infrastructure.Services.Hashers;
@@ -28,6 +31,10 @@ public static class ServiceExtensions
                 // access tickets
                 .AddScoped<IAccessTicketService, AccessTicketService>()
                 .AddScoped<IAccessTicketRepository, AccessTicketRepository>()
+                
+                // chats
+                .AddScoped<IChatService, ChatService>()
+                .AddScoped<IChatRepository, ChatRepository>()
                 
                 // messages
                 .AddScoped<ISendMessageService, SendMessageService>()

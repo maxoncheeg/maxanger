@@ -3,4 +3,4 @@ using MediatR;
 
 namespace Maxanger.Application.CQRS.Queries.Chats;
 
-public record GetChatsInfoQuery(long UserId, DateTime LastUpdatedTime) : PagedQuery, IRequest<IList<ChatInfoResponse>>;
+public record GetChatsInfoQuery(long UserId, DateTime LastUpdatedTime) : PagedQuery, IRequest<IList<ChatInfoDto>>;

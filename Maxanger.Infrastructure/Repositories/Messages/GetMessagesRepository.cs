@@ -10,10 +10,9 @@ public class GetMessagesRepository(ApplicationDbContext context) : IGetMessagesR
     public async Task<IList<Message>> GetChatMessagesByUserIdAsync(long chatId, long userId, int skip, int take,
         CancellationToken cancellationToken)
     {
-        return await (from message in context.Messages
-            where message.ChatId == chatId && message.FromId == userId
-            orderby message.CreatedAt
-            select message)
+        return await context.Messages.OrderByDescending(m => m.CreatedAt)
+            .Where(c => c.Chat.ChatMembers.Any(m => m.ChatId == chatId && m.UserId == userId))
+            .AsNoTracking()
             .Skip(skip)
             .Take(take)
             .ToListAsync(cancellationToken);

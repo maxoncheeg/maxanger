@@ -10,8 +10,8 @@ public class Chat : IEntity
     public long Id { get; private set; }
     public string? Name { get; private set; }
     public ChatType Type { get; private set; }
-    public DateTime CreatedAt { get; private set; }
-    public DateTime UpdatedAt { get; private set; }
+    public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
+    public DateTime UpdatedAt { get; private set; } = DateTime.UtcNow;
     public bool SoftDeleted { get; private set; }
 
     public static Chat Create(ChatType type, string? name)
@@ -34,6 +34,12 @@ public class Chat : IEntity
         var chatMember = ChatMember.Create(Id, userId, status, role);
         
         ChatMembers.Add(chatMember);
+    }
+
+    public void SendMessage(long userId, string content, MessageType messageType,
+        Dictionary<string, object>? metadata = null, long? replyToMessageId = null)
+    {
+        ChatMessages.Add(Message.Create(messageType, content, userId, this, metadata, replyToMessageId));
     }
 
     public void Delete()

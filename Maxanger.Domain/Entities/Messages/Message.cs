@@ -20,7 +20,8 @@ public class Message : IEntity
     public string Content { get; private set; } = null!;
     public bool SoftDeleted { get; private set; }
 
-    public static Message Create(MessageType type, string content, long fromId, long chatId, Dictionary<string, object>? metadata,
+    public static Message Create(MessageType type, string content, long fromId, long chatId,
+        Dictionary<string, object>? metadata,
         long? replyToMessageId)
     {
         if (string.IsNullOrEmpty(content))
@@ -33,11 +34,30 @@ public class Message : IEntity
             FromId = fromId,
             ReplyToMessageId = replyToMessageId,
             Metadata = metadata,
-            ChatId =  chatId
+            ChatId = chatId
         };
     }
-    
-    public static Message Create(long id, MessageType type, string content, long fromId, long chatId, Dictionary<string, object>? metadata,
+
+    public static Message Create(MessageType type, string content, long fromId, Chat chat,
+        Dictionary<string, object>? metadata,
+        long? replyToMessageId)
+    {
+        if (string.IsNullOrEmpty(content))
+            throw new DomainException("EMPTY_CONTENT", "Empty content");
+
+        return new Message
+        {
+            Type = type,
+            Content = content,
+            FromId = fromId,
+            ReplyToMessageId = replyToMessageId,
+            Metadata = metadata,
+            Chat = chat
+        };
+    }
+
+    public static Message Create(long id, MessageType type, string content, long fromId, long chatId,
+        Dictionary<string, object>? metadata,
         long? replyToMessageId)
     {
         if (string.IsNullOrEmpty(content))
@@ -51,7 +71,7 @@ public class Message : IEntity
             FromId = fromId,
             ReplyToMessageId = replyToMessageId,
             Metadata = metadata,
-            ChatId =  chatId
+            ChatId = chatId
         };
     }
 

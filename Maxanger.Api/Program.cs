@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddVersioning();
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddDomainServices().AddApiServices().AddMediatRHandlers();
+builder.Services.AddDomainServices().AddMediatRHandlers();
 
 builder.Services
     .AddControllers()
@@ -81,7 +81,7 @@ app.UseAuthorization();
 app.MapControllers();
 app.MapGet("/", async context => context.Response.Redirect("/swagger"));
 
-app.MapHub<MaxangerHub>(MaxangerRoutes.Chat.Hub);
+app.MapHub<MaxangerHub>(MaxangerRoutes.Chats.Hub);
 
 // if (app.Environment.IsDevelopment())
 // {

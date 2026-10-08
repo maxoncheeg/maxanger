@@ -22,9 +22,9 @@ public static class MaxangerRoutes
         public const string CompleteExternalUserOnly = Base + "/external/complete";
     }
 
-    public static class Chat
+    public static class Chats
     {
-        public const string Base = Api + "/chat";
+        public const string Base = Api + "/chats";
         public const string SendMessage = Base + "/send";
         public const string WhisperMessage = Base + "/whisper";
         public const string GetChats = Base + "/get";

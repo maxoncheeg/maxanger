@@ -1,7 +1,5 @@
 ﻿using System.Text;
 using Asp.Versioning;
-using Maxanger.Api.Services.Security;
-using Maxanger.Application.Services.Security.Abstract;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
@@ -61,10 +59,5 @@ public static class ApiConfigurationExtensions
             });
 
         return services;
-    }
-
-    public static IServiceCollection AddApiServices(this IServiceCollection services)
-    {
-        return services.AddTransient<ISecurityService, SecurityService>();
     }
 }

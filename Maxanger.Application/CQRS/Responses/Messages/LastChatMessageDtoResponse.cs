@@ -1,9 +1,8 @@
-﻿using Maxanger.Application.Models.Messages.Abstract;
-using Maxanger.Domain.Enums;
+﻿using Maxanger.Domain.Enums;
 
 namespace Maxanger.Application.CQRS.Responses.Messages;
 
-public record LastChatMessageResponse() : ILastChatMessage
+public record LastChatMessageDtoResponse() : LastChatMessageDto
 {
     public long Id { get; set; }
     public long FromId { get; set; }
